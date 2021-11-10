@@ -1,0 +1,140 @@
+<div>
+  <div *ngIf="isLoading | async; else content" class="spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+  <ng-template #content>
+    <mat-grid-list cols="3" rowHeight="1:1" cdkDropListGroup colWidth="1:1">
+      <mat-grid-tile class="container">
+        <div class="container-1">
+          <h2 class="title-1">To do</h2>
+          <div
+            cdkDropList
+            [cdkDropListData]="todo"
+            class="list"
+            (cdkDropListDropped)="drop($event)"
+          >
+            <div class="box" *ngFor="let item of todo?.tasks" cdkDrag>
+              <div class="taskBody">
+                <div class="task-header">
+                  <h3 class="taskName">{{ item?.taskName }}</h3>
+                  <div class="taskControls">
+                    <button (click)="openEditDialog(item)">
+                      <mat-icon class="editIcon">edit</mat-icon>
+                    </button>
+                    <button (click)="deleteTask(item)">
+                      <mat-icon class="deleteIcon">delete</mat-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="taskData">
+                  <p>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon"
+                      >face</mat-icon
+                    >
+                    {{ item?.user?.firstName }}
+                    {{ item?.user?.lastName }}
+                  </p>
+                  <p class="dateRange-1">
+                    {{ item?.startDate | date: "dd/MM/yyyy" }} -
+                    {{ item?.endDate | date: "dd/MM/yyyy" }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile class="container">
+        <div class="container-2">
+          <h2 class="title-2">In progress</h2>
+          <div
+            cdkDropList
+            [cdkDropListData]="inProgress"
+            class="list"
+            (cdkDropListDropped)="drop($event)"
+          >
+            <div class="box" *ngFor="let item of inProgress?.tasks" cdkDrag>
+              <div class="taskBody">
+                <div class="task-header">
+                  <h3 class="taskName">{{ item?.taskName }}</h3>
+                  <div class="taskControls">
+                    <button (click)="openEditDialog(item)">
+                      <mat-icon class="editIcon">edit</mat-icon>
+                    </button>
+                    <button (click)="deleteTask(item)">
+                      <mat-icon class="deleteIcon">delete</mat-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="taskData">
+                  <p>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon"
+                      >face</mat-icon
+                    >
+                    {{ item?.user?.firstName }}
+                    {{ item?.user?.lastName }}
+                  </p>
+                  <p class="dateRange-2">
+                    {{ item?.startDate | date: "dd/MM/yyyy" }} -
+                    {{ item?.endDate | date: "dd/MM/yyyy" }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile class="container">
+        <div class="container-3">
+          <h2 class="title-3">Done</h2>
+          <div
+            cdkDropList
+            [cdkDropListData]="done"
+            class="list"
+            (cdkDropListDropped)="drop($event)"
+          >
+            <div class="box" *ngFor="let item of done?.tasks" cdkDrag>
+              <div class="taskBody">
+                <div class="task-header">
+                  <h3 class="taskName">{{ item?.taskName }}</h3>
+                  <div class="taskControls">
+                    <button (click)="openEditDialog(item)">
+                      <mat-icon class="editIcon">edit</mat-icon>
+                    </button>
+                    <button (click)="deleteTask(item)">
+                      <mat-icon class="deleteIcon">delete</mat-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="taskData">
+                  <p>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon"
+                      >face</mat-icon
+                    >
+                    {{ item?.user?.firstName }}
+                    {{ item?.user?.lastName }}
+                  </p>
+                  <p class="dateRange-3">
+                    {{ item?.startDate | date: "dd/MM/yyyy" }} -
+                    {{ item?.endDate | date: "dd/MM/yyyy" }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <div class="button">
+      <button
+        mat-fab
+        color="primary"
+        class="floatingButton"
+        (click)="openDialog()"
+      >
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </ng-template>
+
+</div>

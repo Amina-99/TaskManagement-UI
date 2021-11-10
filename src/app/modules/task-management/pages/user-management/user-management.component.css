@@ -1,0 +1,20 @@
+table {
+  width: 90%;
+}
+.framework {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 50px;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 90%;
+}
+.floatingButton {
+  position: fixed;
+  background-color: #003d99;
+  bottom: 30px;
+  right: 30px;
+}

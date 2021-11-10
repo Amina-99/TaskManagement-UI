@@ -1,0 +1,120 @@
+<mat-grid-list cols="3" rowHeight="100px">
+  <mat-grid-tile>
+    <div class="btn-group">
+      <button
+        mwlCalendarPreviousView
+        mat-flat-button
+        class="btn-group__button"
+        color="primary"
+        [view]="view"
+        [(viewDate)]="viewDate"
+        (viewDateChange)="closeOpenMonthViewDay()"
+      >
+        Previous
+      </button>
+      <button
+        mat-stroked-button
+        class="btn-group__button"
+        color="primary"
+        mwlCalendarToday
+        [(viewDate)]="viewDate"
+      >
+        Today
+      </button>
+      <button
+        mat-flat-button
+        class="btn-group__button"
+        color="primary"
+        mwlCalendarNextView
+        [view]="view"
+        [(viewDate)]="viewDate"
+        (viewDateChange)="closeOpenMonthViewDay()"
+      >
+        Next
+      </button>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <h3 class="dateView">
+      {{ viewDate | calendarDate: view + "ViewTitle":"en" }}
+    </h3>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <div class="btn-group">
+      <button
+        mat-stroked-button
+        class="btn-group__button"
+        color="primary"
+        (click)="setView(CalendarView.Month)"
+        [ngClass]="
+          view === CalendarView.Month
+            ? 'mat-raised-button'
+            : 'mat-stroked-button'
+        "
+      >
+        Month
+      </button>
+      <button
+        mat-stroked-button
+        class="btn-group__button"
+        color="primary"
+        (click)="setView(CalendarView.Week)"
+        [ngClass]="
+          view === CalendarView.Week
+            ? 'mat-raised-button'
+            : 'mat-stroked-button'
+        "
+      >
+        Week
+      </button>
+      <button
+        mat-stroked-button
+        class="btn-group__button"
+        color="primary"
+        (click)="setView(CalendarView.Day)"
+        [ngClass]="
+          view === CalendarView.Day ? 'mat-raised-button' : 'mat-stroked-button'
+        "
+      >
+        Day
+      </button>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<br />
+<div *ngIf="isLoading | async; else content" class="spinner">
+  <mat-spinner></mat-spinner>
+</div>
+<ng-template #content>
+  <div class="table">
+    <div [ngSwitch]="view" class="table__main">
+      <mwl-calendar-month-view
+        *ngSwitchCase="CalendarView.Month"
+        [viewDate]="viewDate"
+        [events]="events"
+        [refresh]="refresh"
+        [activeDayIsOpen]="activeDayIsOpen"
+        (dayClicked)="dayClicked($event.day)"
+        (eventTimesChanged)="eventTimesChanged($event)"
+      >
+      </mwl-calendar-month-view>
+      <mwl-calendar-week-view
+        *ngSwitchCase="CalendarView.Week"
+        [viewDate]="viewDate"
+        [events]="events"
+        [refresh]="refresh"
+        (eventTimesChanged)="eventTimesChanged($event)"
+      >
+      </mwl-calendar-week-view>
+      <mwl-calendar-day-view
+        *ngSwitchCase="CalendarView.Day"
+        [viewDate]="viewDate"
+        [events]="events"
+        [refresh]="refresh"
+        (eventTimesChanged)="eventTimesChanged($event)"
+      >
+      </mwl-calendar-day-view>
+    </div>
+  </div>
+</ng-template>

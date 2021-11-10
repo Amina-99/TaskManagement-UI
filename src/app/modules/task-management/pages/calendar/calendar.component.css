@@ -1,0 +1,22 @@
+.table__main {
+  width: 90%;
+}
+.table {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.btn-group {
+  padding: 40px;
+}
+.btn-group__button {
+  margin-right: 5px;
+}
+.dateView {
+  font-weight: bolder;
+  font-size: large;
+}
+:host {
+  width: 100%;
+  height: 100%;
+}

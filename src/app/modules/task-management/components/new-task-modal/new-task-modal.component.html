@@ -1,0 +1,152 @@
+<div class="dialog">
+  <h1 mat-dialog-title>Add new task</h1>
+  <form
+    [formGroup]="newTaskForm"
+    class="wholeForm"
+    (ngSubmit)="submit()"
+    *ngIf="users"
+  >
+    <mat-form-field appearance="outline">
+      <mat-label>Task name</mat-label>
+      <input
+        matInput
+        required
+        type="text"
+        name="myTaskName"
+        formControlName="taskName"
+        [class.is-invalid]="
+          newTaskForm.controls['taskName'].invalid &&
+          newTaskForm.controls['taskName'].touched
+        "
+      />
+      <mat-error
+        *ngIf="
+          newTaskForm.controls['taskName'].invalid &&
+          newTaskForm.controls['taskName'].touched
+        "
+      >
+        <span *ngIf="newTaskForm.controls['taskName'].errors?.required"
+          >This field is required.</span
+        >
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Assigned to</mat-label>
+      <input
+        type="text"
+        placeholder="Pick one"
+        aria-label="Number"
+        matInput
+        [matAutocomplete]="auto"
+        formControlName="option"
+        [class.is-invalid]="
+          newTaskForm.controls['option'].invalid &&
+          newTaskForm.controls['option'].touched
+        "
+        required
+      />
+      <mat-error
+        *ngIf="
+          newTaskForm.controls['option'].invalid &&
+          newTaskForm.controls['option'].touched
+        "
+      >
+        <span *ngIf="newTaskForm.controls['option'].errors?.required"
+          >This field is required.</span
+        >
+      </mat-error>
+      <mat-autocomplete
+        autoActiveFirstOption
+        #auto="matAutocomplete"
+        (optionSelected)="onSelectUser($event.option.value)"
+      >
+        <mat-option
+          *ngFor="let option of filteredOptions | async"
+          [value]="option"
+        >
+          {{ option.firstName }} {{ option.lastName }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Enter a date range</mat-label>
+      <mat-date-range-input [rangePicker]="picker">
+        <input
+          matStartDate
+          formControlName="start"
+          placeholder="Start date"
+          [class.is-invalid]="
+            newTaskForm.controls['start'].invalid &&
+            newTaskForm.controls['start'].touched
+          "
+        />
+        <input
+          matEndDate
+          formControlName="end"
+          placeholder="End date"
+          [class.is-invalid]="
+            newTaskForm.controls['end'].invalid &&
+            newTaskForm.controls['end'].touched
+          "
+        />
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+      <mat-error
+        *ngIf="newTaskForm.controls.start.hasError('matStartDateInvalid')"
+        >Invalid start date</mat-error
+      >
+      <mat-error *ngIf="newTaskForm.controls.end.hasError('matEndDateInvalid')"
+        >Invalid end date</mat-error
+      >
+      <mat-error
+        *ngIf="
+          newTaskForm.controls['start'].invalid &&
+          newTaskForm.controls['start'].touched
+        "
+      >
+        <span *ngIf="newTaskForm.controls['start'].errors?.required"
+          >Start date is required.</span
+        >
+      </mat-error>
+      <mat-error
+        *ngIf="
+          newTaskForm.controls['end'].invalid &&
+          newTaskForm.controls['end'].touched
+        "
+      >
+        <span *ngIf="newTaskForm.controls['end'].errors?.required"
+          >End date is required.</span
+        >
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="textArea">
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        cdkTextareaAutosize
+        #autosize="cdkTextareaAutosize"
+        cdkAutosizeMinRows="1"
+        cdkAutosizeMaxRows="3"
+        formControlName="description"
+        [class.is-invalid]="
+          newTaskForm.controls['description'].invalid &&
+          newTaskForm.controls['description'].touched
+        "
+      ></textarea>
+      <mat-error
+        *ngIf="
+          newTaskForm.controls['description'].invalid &&
+          newTaskForm.controls['description'].touched
+        "
+      >
+        <span *ngIf="newTaskForm.controls['description'].errors?.required"
+          >This field is required.</span
+        >
+      </mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">
+      Save new task
+    </button>
+  </form>
+</div>

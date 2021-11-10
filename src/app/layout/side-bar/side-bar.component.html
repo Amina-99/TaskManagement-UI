@@ -1,0 +1,11 @@
+<div class="side-bar">
+  <div class="side-bar__navigation" *ngFor="let route of routes">
+    <a
+      class="side-bar__navigationLink"
+      routerLink="{{ route.route }}"
+      routerLinkActive="active"
+    >
+      <i class="material-icons side-bar__linkIcon">{{ route.icon }}</i>
+    </a>
+  </div>
+</div>

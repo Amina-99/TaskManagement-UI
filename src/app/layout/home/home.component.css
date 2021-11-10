@@ -1,0 +1,35 @@
+.page {
+  background: url("/assets/images/bgShapes.png") no-repeat center center fixed;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 100% !important;
+  height: fit-content;
+}
+.content__title {
+  font-size: 5rem;
+  font-weight: 600;
+  color: #3f51b5;
+  margin-bottom: 4rem;
+}
+.content__subtitle {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #8492a6 !important;
+}
+.content__image {
+  width: 500px;
+  height: 400px;
+}
+.content__button {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}

@@ -1,0 +1,46 @@
+:host {
+  flex-direction: column;
+  box-sizing: border-box;
+  display: flex;
+  flex: 1 1 300px;
+  max-width: 100px;
+  min-width: 100px;
+  align-items: center;
+  border-left: red;
+}
+.side-bar__linkIcon {
+  font-size: 40px;
+}
+.side-bar__navigation {
+  height: 100px;
+  width: 100%;
+}
+.side-bar {
+  width: 100%;
+}
+.side-bar__navigationLink {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-decoration: none;
+  color: #c0c6cf;
+}
+.side-bar__navigationLink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  z-index: 100;
+  top: 0;
+  width: 3px; /* or 100px */
+  background: #3f51b5;
+  transition: 0.3s ease;
+  height: 0;
+}
+.active {
+  color: #3f51b5;
+}
+.active::after {
+  height: 100%;
+}

@@ -1,0 +1,24 @@
+:host {
+  flex-direction: column;
+  box-sizing: border-box;
+  display: flex;
+}
+.content__main {
+  flex-direction: column;
+  box-sizing: border-box;
+  display: flex;
+  flex: 1 1 0%;
+  background-color: #eef2f9;
+}
+.content {
+  flex-direction: row;
+  box-sizing: border-box;
+  display: flex;
+  flex: 1 1 100%;
+  min-height: 100vh;
+}
+.layout {
+  flex-direction: column;
+  box-sizing: border-box;
+  display: flex;
+}

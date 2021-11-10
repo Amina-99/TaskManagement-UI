@@ -1,0 +1,25 @@
+.header {
+  height: 75px;
+  background-color: #3f51b5;
+}
+.header__wrapper {
+  display: flex;
+  align-items: center;
+  color: white;
+  height: 100%;
+}
+.header__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 0 40px 0 40px;
+}
+h2 {
+  margin: 0;
+}
+.header__logo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}

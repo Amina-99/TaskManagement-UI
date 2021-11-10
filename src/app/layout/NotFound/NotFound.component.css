@@ -1,0 +1,28 @@
+.page {
+  background: url("/assets/images/notFoundBg.jpg") no-repeat center center fixed;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  height: fit-content;
+}
+h1 {
+  font-size: 14rem;
+  font-weight: 600;
+  color: #3f51b5;
+  margin-bottom: 6rem;
+}
+p {
+  font-size: 2.5rem;
+  margin-top: 40px;
+  font-weight: bolder;
+  color: #3f4254;
+}
